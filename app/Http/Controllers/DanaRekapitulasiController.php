@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class DanaRekapitulasiController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         return view('backend.dana_sosial_rekapitulasi.index');    
     }

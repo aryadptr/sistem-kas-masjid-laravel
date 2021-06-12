@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('backend.login');
-});
+})->name('awal');
 
 Auth::routes();
 
@@ -61,6 +61,11 @@ Route::get('/dana-sosial-rekapitulasi/getdata', 'DanaRekapitulasiController@getD
 //Route untuk cetak laporan kas
 Route::get('/laporan-kas', 'LaporanKasController@index')->name('laporan-kas.index');
 Route::get('/laporan-data-kas/{tanggal_awal}/{tanggal_akhir}', 'LaporanKasController@laporanKas')->name('cetak-data-kas.laporanKas');
+
+//Route untuk cetak laporan dana sosial
+Route::get('/laporan-dana-sosial', 'LaporanDanaSosialController@index')->name('laporan-dana-sosial.index');
+Route::get('/laporan-data-dana-sosial/{tanggal_awal}/{tanggal_akhir}', 'LaporanDanaSosialController@laporanDanaSosial')->name('cetak-data-dana-sosial.laporanKas');
+
 // Route untuk Users
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/users/getdata', 'UsersController@getData')->name('users.getdata');

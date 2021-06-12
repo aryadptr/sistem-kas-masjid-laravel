@@ -10,26 +10,30 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
+        
+        @if (Auth::check())
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
         </li>
-
+        @endif
+        
+        @if (Auth::check());
         <!-- Divider -->
         <hr class="sidebar-divider">
-
+        
         <!-- Heading -->
         <div class="sidebar-heading">
             Keuangan
         </div>
-
+        
+        
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
+            aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Dana Kas</span>
             </a>
@@ -42,7 +46,9 @@
                 </div>
             </div>
         </li>
+        @endif
 
+        @if (Auth::check())
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -60,7 +66,33 @@
                 </div>
             </div>
         </li>
+        @endif
 
+        @if (Auth::check() && Auth::user()->level == 'admin')
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Data Users
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Users</span>
+            </a>
+            <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Manajemen</h6>
+                    <a class="collapse-item" href="{{ route('users.index') }}">Kelola Data Users</a>
+                </div>
+        </li>
+        @endif
+
+        @if (Auth::check())
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -80,9 +112,10 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen</h6>
                     <a class="collapse-item" href="{{ route('laporan-kas.index') }}">Laporan Kas</a>
-                    <a class="collapse-item" href="#">Laporan Dana Sosial</a>
+                    <a class="collapse-item" href="{{ route('laporan-dana-sosial.index') }}">Laporan Dana Sosial</a>
                 </div>
         </li>
+        @endif
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">

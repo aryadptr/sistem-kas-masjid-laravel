@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class LaporanKasController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function index(){
         return view('backend.cetak_laporan.kas');
     }
